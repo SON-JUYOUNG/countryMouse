@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 import KakaoMap from "./components/KakaoMap"
 
 function App() {
-  const [count, setCount] = useState(0)
   const [backendStatus, setBackendStatus] = useState<any>(null)
 
   useEffect(() => {
@@ -16,61 +12,84 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white flex flex-col items-center justify-center p-4">
-      <div className="flex justify-center space-x-8 mb-12">
-        <a href="https://vite.dev" target="_blank" className="hover:scale-110 transition-transform">
-          <img src={viteLogo} className="w-32 h-32 drop-shadow-[0_0_2rem_#646cffaa]" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" className="hover:scale-110 transition-transform">
-          <img src={reactLogo} className="w-32 h-32 drop-shadow-[0_0_2rem_#61dafbaa]" alt="React logo" />
-        </a>
-      </div>
-
-      <h1 className="text-6xl font-black mb-8 tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
-        LCI PLATFORM
-      </h1>
-
-      <div className="max-w-md w-full bg-slate-800/50 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl">
-        <div className="flex flex-col items-center mb-8">
-          <button
-            onClick={() => setCount((count) => count + 1)}
-            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-6 rounded-2xl transition-all active:scale-95 shadow-lg shadow-blue-500/30"
-          >
-            Interactive Counter: {count}
-          </button>
+    <div className="flex h-screen w-screen bg-slate-900 text-slate-100 overflow-hidden font-sans">
+      {/* Sidebar - Controls & Inputs */}
+      <aside className="w-96 flex-shrink-0 bg-slate-800/90 backdrop-blur-md border-r border-slate-700 flex flex-col shadow-2xl z-10">
+        {/* Header */}
+        <div className="p-6 border-b border-slate-700">
+          <h1 className="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
+            LCI PLATFORM
+          </h1>
+          <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-semibold">
+            Financial Lifestyle Planner
+          </p>
         </div>
 
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className={`w-3 h-3 rounded-full ${backendStatus ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
-            <h2 className="text-lg font-medium text-slate-300">Backend Connectivity</h2>
+        {/* Scrollable Content Area */}
+        <div className="flex-1 overflow-y-auto p-6 space-y-8">
+          {/* Status Card */}
+          <div className={`p-4 rounded-xl border ${backendStatus ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-rose-500/10 border-rose-500/20'}`}>
+            <div className="flex items-center space-x-3 mb-2">
+              <div className={`w-2.5 h-2.5 rounded-full ${backendStatus ? 'bg-emerald-400 animate-pulse' : 'bg-rose-500'}`} />
+              <span className="text-sm font-bold text-slate-200">System Status</span>
+            </div>
+            {backendStatus ? (
+              <div className="text-xs font-mono text-emerald-400/80">
+                Spring Boot {backendStatus.version} • Java {backendStatus.java} <br />
+                Status: {backendStatus.status}
+              </div>
+            ) : (
+              <div className="text-xs text-rose-400">Backend Disconnected</div>
+            )}
           </div>
 
-          {backendStatus ? (
-            <div className="p-4 bg-slate-900/80 border border-slate-700 rounded-xl font-mono text-xs overflow-auto">
-              <pre className="text-emerald-400">{JSON.stringify(backendStatus, null, 2)}</pre>
-            </div>
-          ) : (
-            <div className="p-4 bg-slate-900/80 border border-slate-700 rounded-xl animate-pulse">
-              <p className="text-slate-500 text-center text-sm font-mono italic">Waiting for Java 25 + Spring Boot 4.0...</p>
-            </div>
-          )}
-        </div>
-      </div>
+          {/* Input Section Placeholder */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Simulation Settings</h3>
 
-      <div className="w-full max-w-4xl mt-8">
-        <h2 className="text-2xl font-bold mb-4 text-center">Interactive Map Area</h2>
-        {/* Only render map if env key is present to avoid errors if key is missing */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300">Monthly Income (₩)</label>
+              <input type="number" placeholder="3,000,000" className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300">Workplace Location</label>
+              <input type="text" placeholder="Gangnam Station..." className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" />
+            </div>
+
+            <button className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/20 transition-all active:scale-95 mt-4">
+              Run Simulation
+            </button>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="p-4 border-t border-slate-700 bg-slate-900/50">
+          <div className="text-[10px] text-slate-500 font-mono text-center">
+            Powered by Java 25 & React 19
+          </div>
+        </div>
+      </aside>
+
+      {/* Main Map Area */}
+      <main className="flex-1 relative bg-slate-900">
         {import.meta.env.VITE_KAKAO_MAP_KEY ? (
           <KakaoMap />
         ) : (
-          <div className="text-center text-red-400">Kakao API Key is missing in .env</div>
+          <div className="flex h-full items-center justify-center">
+            <div className="text-rose-500 font-mono bg-rose-500/10 px-6 py-4 rounded-xl border border-rose-500/20">
+              ⚠️ Kakao Map API Key Missing
+            </div>
+          </div>
         )}
-      </div>
 
-      <p className="mt-12 text-slate-500 text-sm font-medium">
-        Tech Architecture: Java 25 LTS | Spring Boot 4.0 | React 19 | Tailwind 4
-      </p>
+        {/* Floating Overlay Example */}
+        <div className="absolute top-6 right-6 bg-slate-800/90 backdrop-blur-md border border-slate-700 p-4 rounded-xl shadow-2xl max-w-xs z-20">
+          <h4 className="text-xs font-bold text-slate-400 uppercase mb-2">Selected Region</h4>
+          <div className="text-lg font-bold text-white">Seoul, South Korea</div>
+          <div className="text-xs text-slate-500">Wait for selection...</div>
+        </div>
+      </main>
     </div>
   )
 }
