@@ -1,0 +1,13 @@
+{
+    "java.jdt.ls.java.home": "C:\\Users\\SJY\\.gemini\\antigravity\\user_tools\\jdk25\\jdk-25.0.1+8",
+    "spring.boot.ls.java.home": "C:\\Users\\SJY\\.gemini\\antigravity\\user_tools\\jdk25\\jdk-25.0.1+8",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-25",
+            "path": "C:\\Users\\SJY\\.gemini\\antigravity\\user_tools\\jdk25\\jdk-25.0.1+8",
+            "default": true
+        }
+    ],
+    "gradle.java.home": "C:\\Users\\SJY\\.gemini\\antigravity\\user_tools\\jdk25\\jdk-25.0.1+8",
+    "java.compile.nullAnalysis.mode": "automatic"
+}

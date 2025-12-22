@@ -1,0 +1,29 @@
+# Tools and binaries
+tools/
+*.zip
+*.exe
+*.dll
+
+# Java/Spring
+**/build/
+**/bin/
+**/.gradle/
+**/out/
+**/.settings/
+**/.classpath
+**/.project
+**/target/
+
+# Node/React
+**/node_modules/
+**/dist/
+**/.env
+**/.env.local
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.iml
