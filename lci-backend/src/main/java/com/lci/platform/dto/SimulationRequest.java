@@ -1,11 +1,8 @@
 package com.lci.platform.dto;
 
-import lombok.Data;
-
-@Data
-public class SimulationRequest {
-    private int monthlyIncome;
-    private int targetSavings;
-    private String workplace;
-    private String currentLiving;
-}
+public record SimulationRequest(
+    int monthlyIncome,
+    int targetSavings,
+    String workplace,
+    String currentLiving
+) {}

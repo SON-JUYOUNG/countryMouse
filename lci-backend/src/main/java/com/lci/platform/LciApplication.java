@@ -1,6 +1,7 @@
 package com.lci.platform;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -10,9 +11,9 @@ import org.springframework.util.StringUtils;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-@Slf4j
 @SpringBootApplication
 public class LciApplication {
+    private static final Logger log = LoggerFactory.getLogger(LciApplication.class);
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(LciApplication.class);
         ApplicationContext context = app.run(args);
